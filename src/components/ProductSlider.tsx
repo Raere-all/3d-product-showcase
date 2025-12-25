@@ -58,10 +58,6 @@ const ProductSlider = () => {
                     </div>
                   ))}
                 </div>
-                <div className="checkout">
-                  <button>ADD TO CART</button>
-                  <button>CHECKOUT</button>
-                </div>
               </div>
             </div>
           ))}
