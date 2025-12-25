@@ -1,104 +1,88 @@
-import { useState, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { products, Product } from "@/data/products";
-import ProductCard from "./ProductCard";
-import ProductDetail from "./ProductDetail";
+import { useState, useRef } from "react";
+import { products } from "@/data/products";
+import "@/styles/slider.css";
 
 const ProductSlider = () => {
-  const [items, setItems] = useState<Product[]>([...products]);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showDetail, setShowDetail] = useState(false);
+  const listRef = useRef<HTMLDivElement>(null);
 
-  const handleNext = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    
-    setTimeout(() => {
-      setItems(prev => {
-        const newItems = [...prev];
-        const first = newItems.shift()!;
-        newItems.push(first);
-        return newItems;
-      });
-      setIsTransitioning(false);
-    }, 50);
-  }, [isTransitioning]);
+  const handleNext = () => {
+    if (listRef.current) {
+      const items = listRef.current.querySelectorAll('.item');
+      if (items.length > 0) {
+        listRef.current.appendChild(items[0]);
+      }
+    }
+  };
 
-  const handlePrev = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    
-    setTimeout(() => {
-      setItems(prev => {
-        const newItems = [...prev];
-        const last = newItems.pop()!;
-        newItems.unshift(last);
-        return newItems;
-      });
-      setIsTransitioning(false);
-    }, 50);
-  }, [isTransitioning]);
+  const handlePrev = () => {
+    if (listRef.current) {
+      const items = listRef.current.querySelectorAll('.item');
+      if (items.length > 0) {
+        listRef.current.prepend(items[items.length - 1]);
+      }
+    }
+  };
 
-  const handleSeeMore = (product: Product) => {
-    setSelectedProduct(product);
+  const handleSeeMore = () => {
+    setShowDetail(true);
   };
 
   const handleBack = () => {
-    setSelectedProduct(null);
+    setShowDetail(false);
   };
 
-  if (selectedProduct) {
-    return <ProductDetail product={selectedProduct} onBack={handleBack} />;
-  }
-
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 pb-20">
-      {/* Slider Container */}
-      <div className="relative w-full max-w-7xl h-[450px] md:h-[550px] flex items-center">
-        {items.map((product, index) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            index={index}
-            totalItems={items.length}
-            onSeeMore={() => handleSeeMore(product)}
-          />
-        ))}
-      </div>
+    <>
+      <header className="slider-header">
+        <div className="logo">TechVault</div>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">Products</a>
+          <a href="#">Contact</a>
+        </nav>
+      </header>
 
-      {/* Navigation Buttons */}
-      <button
-        onClick={handlePrev}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 glass-card-strong w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-foreground hover:scale-110 transition-all duration-300 hover:shadow-glow-blue"
-        aria-label="Previous product"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      
-      <button
-        onClick={handleNext}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 glass-card-strong w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-foreground hover:scale-110 transition-all duration-300 hover:shadow-glow-red"
-        aria-label="Next product"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+      <div className={`carousel ${showDetail ? 'showDetail' : ''}`}>
+        <div className="list" ref={listRef}>
+          {products.map((product) => (
+            <div className="item" key={product.id}>
+              <img src={product.image} alt={product.title} />
+              <div className="introduce">
+                <div className="title">DESIGN SLIDER</div>
+                <div className="topic">{product.topic}</div>
+                <div className="des">{product.shortDescription}</div>
+                <button className="seeMore" onClick={handleSeeMore}>
+                  SEE MORE ↗
+                </button>
+              </div>
+              <div className="detail">
+                <div className="title">{product.title}</div>
+                <div className="des">{product.longDescription}</div>
+                <div className="specifications">
+                  {product.specifications.map((spec, index) => (
+                    <div key={index}>
+                      <p>{spec.label}</p>
+                      <p>{spec.value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="checkout">
+                  <button>ADD TO CART</button>
+                  <button>CHECKOUT</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-      {/* Page Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {products.map((p, i) => {
-          const activeIndex = items.findIndex(item => item.id === items[1]?.id);
-          const isActive = products.findIndex(prod => prod.id === items[1]?.id) === i;
-          return (
-            <div
-              key={p.id}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                isActive ? 'bg-primary w-8' : 'bg-muted-foreground/30 w-2'
-              }`}
-            />
-          );
-        })}
+        <div className="arrows">
+          <button id="prev" onClick={handlePrev}>&lt;</button>
+          <button id="next" onClick={handleNext}>&gt;</button>
+          <button id="back" onClick={handleBack}>See All ↗</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
