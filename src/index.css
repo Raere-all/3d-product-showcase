@@ -6,81 +6,81 @@
 
 @layer base {
   :root {
-    --background: 0 0% 96%;
-    --foreground: 220 20% 10%;
+    --background: 220 20% 97%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 220 90% 56%;
+    --primary: 222 47% 20%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 80% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 43 74% 49%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 15% 85%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 220 14% 90%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 260 70% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 220 90% 56%;
+    --border: 220 13% 86%;
+    --input: 220 13% 86%;
+    --ring: 222 47% 20%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
     /* Custom Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.25;
-    --glass-border: 0 0% 100% / 0.4;
+    --glass-bg: 0 0% 100% / 0.35;
+    --glass-border: 0 0% 100% / 0.5;
     --glass-blur: 20px;
 
-    /* Gradient Colors */
-    --gradient-red: 350 90% 60%;
-    --gradient-blue: 220 90% 60%;
+    /* Gradient Colors - Navy to Slate */
+    --gradient-start: 222 47% 20%;
+    --gradient-end: 215 25% 35%;
 
     /* Shadows */
-    --shadow-soft: 0 8px 32px -8px hsl(220 20% 10% / 0.1);
+    --shadow-soft: 0 8px 32px -8px hsl(222 47% 11% / 0.15);
     --shadow-glow: 0 0 60px 20px;
   }
 
   .dark {
-    --background: 220 20% 8%;
-    --foreground: 0 0% 95%;
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
 
-    --card: 220 20% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 222 47% 12%;
+    --card-foreground: 210 40% 96%;
 
-    --popover: 220 20% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 222 47% 12%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 220 90% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 43 74% 49%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 350 80% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 222 47% 25%;
+    --secondary-foreground: 210 40% 96%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 60%;
 
-    --accent: 260 70% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 220 90% 60%;
+    --border: 222 30% 22%;
+    --input: 222 30% 22%;
+    --ring: 43 74% 49%;
 
-    --glass-bg: 220 20% 15% / 0.4;
-    --glass-border: 0 0% 100% / 0.1;
+    --glass-bg: 222 47% 15% / 0.5;
+    --glass-border: 0 0% 100% / 0.08;
   }
 }
 
@@ -109,12 +109,12 @@
     box-shadow: var(--shadow-soft);
   }
 
-  .shadow-glow-red {
-    box-shadow: var(--shadow-glow) hsl(var(--gradient-red) / 0.3);
+  .shadow-glow-primary {
+    box-shadow: var(--shadow-glow) hsl(var(--gradient-start) / 0.2);
   }
 
-  .shadow-glow-blue {
-    box-shadow: var(--shadow-glow) hsl(var(--gradient-blue) / 0.3);
+  .shadow-glow-accent {
+    box-shadow: var(--shadow-glow) hsl(var(--secondary) / 0.3);
   }
 }
 

@@ -50,8 +50,8 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "gradient-red": "hsl(var(--gradient-red))",
-        "gradient-blue": "hsl(var(--gradient-blue))",
+        "gradient-start": "hsl(var(--gradient-start))",
+        "gradient-end": "hsl(var(--gradient-end))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
