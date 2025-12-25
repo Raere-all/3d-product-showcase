@@ -34,14 +34,6 @@ const ProductSlider = () => {
 
   return (
     <>
-      <header className="slider-header">
-        <div className="logo">TechVault</div>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">Products</a>
-          <a href="#">Contact</a>
-        </nav>
-      </header>
 
       <div className={`carousel ${showDetail ? 'showDetail' : ''}`}>
         <div className="list" ref={listRef}>
@@ -49,7 +41,6 @@ const ProductSlider = () => {
             <div className="item" key={product.id}>
               <img src={product.image} alt={product.title} />
               <div className="introduce">
-                <div className="title">DESIGN SLIDER</div>
                 <div className="topic">{product.topic}</div>
                 <div className="des">{product.shortDescription}</div>
                 <button className="seeMore" onClick={handleSeeMore}>
