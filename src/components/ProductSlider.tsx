@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { products } from "@/data/products";
 import "@/styles/slider.css";
 import Navbar from "./Navbar";
-import FeaturedProject from "./FeaturedProject";
+import ProjectsScroller from "./ProjectsScroller";
 
 const ProductSlider = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -73,7 +73,7 @@ const ProductSlider = () => {
         </div>
       </div>
 
-      <FeaturedProject />
+      <ProjectsScroller />
     </>
   );
 };
