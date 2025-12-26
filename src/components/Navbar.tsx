@@ -1,4 +1,5 @@
 import { useState } from "react";
+import iotClubLogo from "@/assets/iot-club-logo.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,8 +18,12 @@ const Navbar = () => {
       <div className="glass-panel rounded-full px-6 py-2 flex justify-between items-center shadow-lg hover:shadow-neon transition-shadow duration-500">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-neon-teal shadow-neon flex items-center justify-center bg-midnight">
-            <span className="font-orbitron font-bold text-neon-teal text-sm">IoT</span>
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-neon-teal shadow-neon">
+            <img 
+              src={iotClubLogo} 
+              alt="IoT Club Logo" 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+            />
           </div>
           <span className="font-orbitron font-bold text-lg tracking-wider text-foreground hidden sm:block">
             IOT<span className="text-neon-teal"> CLUB</span>
