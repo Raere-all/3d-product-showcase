@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { products } from "@/data/products";
 import "@/styles/slider.css";
+import Navbar from "./Navbar";
 
 const ProductSlider = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -34,6 +35,7 @@ const ProductSlider = () => {
 
   return (
     <>
+      <Navbar />
 
       <div className={`carousel ${showDetail ? 'showDetail' : ''}`}>
         <div className="list" ref={listRef}>

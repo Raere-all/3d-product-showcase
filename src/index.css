@@ -1,86 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 222 47% 11%;
+    /* Cyberpunk Dark Theme */
+    --background: 220 50% 4%;
+    --foreground: 180 100% 97%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 220 50% 8%;
+    --card-foreground: 180 100% 97%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 220 50% 8%;
+    --popover-foreground: 180 100% 97%;
 
-    --primary: 222 47% 20%;
-    --primary-foreground: 0 0% 100%;
+    /* Neon Teal as primary */
+    --primary: 185 100% 50%;
+    --primary-foreground: 220 50% 4%;
 
-    --secondary: 43 74% 49%;
-    --secondary-foreground: 222 47% 11%;
+    /* Electric Purple as secondary */
+    --secondary: 270 80% 60%;
+    --secondary-foreground: 180 100% 97%;
 
-    --muted: 220 14% 90%;
-    --muted-foreground: 220 9% 46%;
+    /* Neon Pink/Magenta for accents */
+    --accent: 320 100% 60%;
+    --accent-foreground: 220 50% 4%;
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 222 47% 11%;
+    --muted: 220 40% 12%;
+    --muted-foreground: 220 20% 60%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 86%;
-    --input: 220 13% 86%;
-    --ring: 222 47% 20%;
+    --border: 220 40% 18%;
+    --input: 220 40% 18%;
+    --ring: 185 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Custom Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.35;
-    --glass-border: 0 0% 100% / 0.5;
-    --glass-blur: 20px;
+    /* Cyberpunk specific colors */
+    --void: 220 50% 4%;
+    --midnight: 220 50% 8%;
+    --neon-teal: 185 100% 50%;
+    --plasma-blue: 217 91% 60%;
+    --neon-pink: 320 100% 60%;
+    --electric-purple: 270 80% 60%;
+    --lavender: 270 60% 75%;
 
-    /* Gradient Colors - Navy to Slate */
-    --gradient-start: 222 47% 20%;
-    --gradient-end: 215 25% 35%;
+    /* Glassmorphism */
+    --glass-bg: 220 50% 10% / 0.6;
+    --glass-border: 0 0% 100% / 0.08;
+    --glass-blur: 12px;
+
+    /* Gradient Colors */
+    --gradient-start: 320 100% 60%;
+    --gradient-mid: 217 91% 60%;
+    --gradient-end: 185 100% 50%;
 
     /* Shadows */
-    --shadow-soft: 0 8px 32px -8px hsl(222 47% 11% / 0.15);
+    --shadow-soft: 0 8px 32px -8px hsl(185 100% 50% / 0.15);
+    --shadow-neon: 0 0 10px hsl(185 100% 50% / 0.5), 0 0 20px hsl(185 100% 50% / 0.3);
     --shadow-glow: 0 0 60px 20px;
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 210 40% 96%;
-
-    --card: 222 47% 12%;
-    --card-foreground: 210 40% 96%;
-
-    --popover: 222 47% 12%;
-    --popover-foreground: 210 40% 96%;
-
-    --primary: 43 74% 49%;
-    --primary-foreground: 222 47% 11%;
-
-    --secondary: 222 47% 25%;
-    --secondary-foreground: 210 40% 96%;
-
-    --muted: 222 30% 18%;
-    --muted-foreground: 215 20% 60%;
-
-    --accent: 43 74% 49%;
-    --accent-foreground: 222 47% 11%;
-
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 222 30% 22%;
-    --input: 222 30% 22%;
-    --ring: 43 74% 49%;
-
-    --glass-bg: 222 47% 15% / 0.5;
-    --glass-border: 0 0% 100% / 0.08;
+    /* Dark mode is the default for cyberpunk */
+    --background: 220 50% 4%;
+    --foreground: 180 100% 97%;
   }
 }
 
@@ -90,17 +76,54 @@
   }
 
   body {
-    @apply bg-background text-foreground font-poppins antialiased;
+    @apply bg-background text-foreground font-grotesk antialiased;
+    background: linear-gradient(135deg, hsl(var(--void)), hsl(var(--midnight)));
+    min-height: 100vh;
   }
 }
 
 @layer components {
+  .glass-panel {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+  }
+
   .glass-card {
-    @apply bg-white/25 backdrop-blur-xl border border-white/40 shadow-soft;
+    @apply bg-midnight/60 backdrop-blur-xl border border-white/10;
   }
 
   .glass-card-strong {
-    @apply bg-white/60 backdrop-blur-2xl border border-white/50 shadow-soft;
+    @apply bg-midnight/80 backdrop-blur-2xl border border-white/15;
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--neon-pink)), hsl(var(--plasma-blue)), hsl(var(--neon-teal)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--neon-pink)), hsl(var(--plasma-blue)), hsl(var(--neon-teal)));
+    border-radius: inherit;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
   }
 }
 
@@ -109,12 +132,16 @@
     box-shadow: var(--shadow-soft);
   }
 
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+
   .shadow-glow-primary {
-    box-shadow: var(--shadow-glow) hsl(var(--gradient-start) / 0.2);
+    box-shadow: var(--shadow-glow) hsl(var(--neon-teal) / 0.2);
   }
 
   .shadow-glow-accent {
-    box-shadow: var(--shadow-glow) hsl(var(--secondary) / 0.3);
+    box-shadow: var(--shadow-glow) hsl(var(--neon-pink) / 0.3);
   }
 }
 
@@ -173,5 +200,14 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--neon-teal) / 0.5), 0 0 10px hsl(var(--neon-teal) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px hsl(var(--neon-teal) / 0.8), 0 0 30px hsl(var(--neon-teal) / 0.5);
   }
 }
