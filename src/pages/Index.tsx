@@ -10,13 +10,17 @@ const Index = () => {
         <meta name="description" content="Explore our innovative tech products with an immersive 3D showcase experience. From fall detection systems to autonomous vehicles." />
       </Helmet>
       
-      <main className="relative w-full min-h-screen bg-background overflow-x-hidden">
-        {/* Animated Gradient Background */}
-        <GradientBlob />
+      <div className="relative w-full">
+        {/* Animated Gradient Background - fixed behind everything */}
+        <div className="fixed inset-0 z-0">
+          <GradientBlob />
+        </div>
         
-        {/* Product Slider */}
-        <ProductSlider />
-      </main>
+        {/* Main Content */}
+        <main className="relative z-10">
+          <ProductSlider />
+        </main>
+      </div>
     </>
   );
 };
