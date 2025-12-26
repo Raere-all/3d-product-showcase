@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { products } from "@/data/products";
 import "@/styles/slider.css";
 import Navbar from "./Navbar";
+import FeaturedProject from "./FeaturedProject";
 
 const ProductSlider = () => {
   const [showDetail, setShowDetail] = useState(false);
@@ -71,6 +72,8 @@ const ProductSlider = () => {
           <button id="back" onClick={handleBack}>See All ↗</button>
         </div>
       </div>
+
+      <FeaturedProject />
     </>
   );
 };

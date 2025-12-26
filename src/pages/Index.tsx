@@ -10,7 +10,7 @@ const Index = () => {
         <meta name="description" content="Explore our innovative tech products with an immersive 3D showcase experience. From fall detection systems to autonomous vehicles." />
       </Helmet>
       
-      <main className="relative w-full h-screen bg-background overflow-hidden">
+      <main className="relative w-full min-h-screen bg-background overflow-x-hidden">
         {/* Animated Gradient Background */}
         <GradientBlob />
         
