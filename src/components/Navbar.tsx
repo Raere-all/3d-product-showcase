@@ -1,8 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import iotClubLogo from "@/assets/iot-club-logo.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px
+        setIsVisible(false);
+        setMobileMenuOpen(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const navLinks = [
     { href: "#", label: "Home", active: false },
@@ -14,11 +36,15 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300">
+    <nav 
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-[100] w-[95%] max-w-6xl transition-all duration-300 ${
+        isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      }`}
+    >
       <div className="glass-panel rounded-full px-6 py-2 flex justify-between items-center shadow-lg hover:shadow-neon transition-shadow duration-500">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-neon-teal shadow-neon">
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-neon-teal shadow-neon bg-transparent">
             <img 
               src={iotClubLogo} 
               alt="IoT Club Logo" 
