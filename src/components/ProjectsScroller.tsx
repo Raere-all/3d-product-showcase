@@ -65,12 +65,13 @@ const ProjectCard = ({ project }: { project: Project }) => (
 const ProjectsScroller = () => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
+  const hasCloned = useRef(false);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
     const scrollerInner = innerRef.current;
 
-    if (!scroller || !scrollerInner) return;
+    if (!scroller || !scrollerInner || hasCloned.current) return;
 
     // Check for reduced motion preference
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -78,13 +79,18 @@ const ProjectsScroller = () => {
     // Add animated attribute
     scroller.setAttribute("data-animated", "true");
 
-    // Clone items for infinite scroll
+    // Clone items for infinite scroll - need to clone multiple times for seamless loop
     const scrollerContent = Array.from(scrollerInner.children);
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true) as HTMLElement;
-      duplicatedItem.setAttribute("aria-hidden", "true");
-      scrollerInner.appendChild(duplicatedItem);
-    });
+    // Clone 3 times to ensure seamless looping
+    for (let i = 0; i < 3; i++) {
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true) as HTMLElement;
+        duplicatedItem.setAttribute("aria-hidden", "true");
+        scrollerInner.appendChild(duplicatedItem);
+      });
+    }
+    
+    hasCloned.current = true;
   }, []);
 
   return (
@@ -131,11 +137,11 @@ const ProjectsScroller = () => {
           -webkit-mask: linear-gradient(
             90deg,
             transparent,
-            white 10%,
-            white 90%,
+            white 5%,
+            white 95%,
             transparent
           );
-          mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+          mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
         }
 
         .scroller[data-animated="true"] .scroller__inner {
@@ -154,16 +160,16 @@ const ProjectsScroller = () => {
         }
 
         .scroller[data-speed="fast"] {
-          --_animation-duration: 20s;
+          --_animation-duration: 15s;
         }
 
         .scroller[data-speed="slow"] {
-          --_animation-duration: 60s;
+          --_animation-duration: 30s;
         }
 
         @keyframes scroll {
           to {
-            transform: translate(calc(-50% - 0.75rem));
+            transform: translate(calc(-25% - 0.375rem));
           }
         }
       `}</style>
