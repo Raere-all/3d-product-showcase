@@ -88,12 +88,15 @@ const ProductSlider = () => {
                 <div className="title">{product.title}</div>
                 <div className="des">{product.longDescription}</div>
                 <div className="specifications">
-                  {product.specifications.map((spec, index) => (
-                    <div key={index}>
-                      <p>{spec.label}</p>
-                      <p>{spec.value}</p>
-                    </div>
-                  ))}
+                  <div className="specifications-track">
+                    {/* Duplicate specs for seamless infinite scroll */}
+                    {[...product.specifications, ...product.specifications].map((spec, index) => (
+                      <div key={index}>
+                        <p>{spec.label}</p>
+                        <p>{spec.value}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
