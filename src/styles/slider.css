@@ -322,12 +322,32 @@
 }
 
 .carousel.showDetail .list .item:nth-child(2) .detail .specifications {
-  display: flex;
-  gap: 10px;
   width: 100%;
   border-top: 1px solid hsl(var(--foreground) / 0.2);
   margin-top: 20px;
-  justify-content: flex-end;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications-track {
+  display: flex;
+  gap: 15px;
+  animation: scrollSpecs 15s linear infinite;
+  width: fit-content;
+}
+
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollSpecs {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .carousel.showDetail .list .item:nth-child(2) .detail .specifications div {
