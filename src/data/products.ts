@@ -1,6 +1,7 @@
 import fallDetection from "@/assets/project1.png";
 import obstacleCar from "@/assets/project2.png";
 import smartGuard from "@/assets/project3.png";
+import emergencyCampusBot from "@/assets/emergency-campus-bot.png";
 
 export interface Product {
   id: number;
@@ -64,5 +65,21 @@ export const products: Product[] = [
     ],
     image: smartGuard,
     price: "$399.99"
+  },
+  {
+    id: 4,
+    title: "Emergency Campus Bot",
+    topic: "Campus Safety",
+    shortDescription: "Autonomous rescue robot with tank treads for navigating campus emergencies and providing rapid response assistance.",
+    longDescription: "The Emergency Campus Bot is a rugged, all-terrain autonomous robot designed for campus safety and emergency response. Built with tank-style treads for maximum mobility, it can navigate stairs, rough terrain, and obstacles to reach emergency locations quickly. Equipped with sensors, cameras, and communication systems for real-time situational awareness.",
+    specifications: [
+      { label: "Chassis", value: "Tank Treads" },
+      { label: "Sensors", value: "IR + Ultrasonic" },
+      { label: "Camera", value: "720p Streaming" },
+      { label: "Controller", value: "Arduino + ESP32" },
+      { label: "Battery", value: "4 Hours Runtime" },
+    ],
+    image: emergencyCampusBot,
+    price: "$549.99"
   },
 ];
