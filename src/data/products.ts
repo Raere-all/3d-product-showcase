@@ -20,7 +20,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 1,
-    title: "Free Fall Detection System",
+    title: "Free Fall Detection\nSystem",
     topic: "Safety & Monitoring",
     shortDescription: "Advanced accelerometer-based fall detection for elderly care and industrial safety applications.",
     longDescription: "Our Free Fall Detection System utilizes cutting-edge MEMS accelerometer technology combined with intelligent algorithms to detect sudden falls in real-time. The system immediately alerts caregivers or emergency services, potentially saving lives in critical situations.",
