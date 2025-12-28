@@ -77,7 +77,7 @@ const ProductSlider = () => {
             <div className="item" key={product.id}>
               <img src={product.image} alt={product.title} />
               <div className="introduce">
-                <div className="title">{product.title}</div>
+                <div className="title" style={{ whiteSpace: 'pre-line' }}>{product.title}</div>
                 <div className="topic">{product.topic}</div>
                 <div className="des">{product.shortDescription}</div>
                 <button className="seeMore" onClick={handleSeeMore}>
@@ -85,7 +85,7 @@ const ProductSlider = () => {
                 </button>
               </div>
               <div className="detail">
-                <div className="title">{product.title}</div>
+                <div className="title" style={{ whiteSpace: 'pre-line' }}>{product.title}</div>
                 <div className="des">{product.longDescription}</div>
                 <div className="specifications">
                   <div className="specifications-track">
