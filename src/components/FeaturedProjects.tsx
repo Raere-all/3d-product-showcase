@@ -2,6 +2,7 @@ import smartGuardSentinel from "@/assets/smart-guard-sentinel.png";
 import cosmicEcho from "@/assets/cosmic-echo-project.jpg";
 import voiceExpenseTracker from "@/assets/voice-expense-tracker.png";
 import emergencyCampusBot from "@/assets/emergency-campus-bot.png";
+import freeFallDetection from "@/assets/free-fall-detection.png";
 
 interface Project {
   id: number;
@@ -10,6 +11,7 @@ interface Project {
   members: string[];
   mentor: string;
   image: string;
+  hasRoundedImage?: boolean;
 }
 
 const projects: Project[] = [
@@ -28,6 +30,7 @@ const projects: Project[] = [
     members: ["Anvay Ghare", "Pranit Dhande"],
     mentor: "Purrva Bothra",
     image: cosmicEcho,
+    hasRoundedImage: true,
   },
   {
     id: 3,
@@ -35,7 +38,7 @@ const projects: Project[] = [
     category: "Safety Systems",
     members: ["Yadnesh Gunjalpatil", "Dikshant Patil", "Onkar Ekatpure", "Bhakti Nemane"],
     mentor: "Mansi Laddha",
-    image: smartGuardSentinel, // Placeholder - replace with actual image
+    image: freeFallDetection,
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ const projects: Project[] = [
     members: ["Dhruv Agrawal", "Shivam Gaikwad"],
     mentor: "Purrva Bothra",
     image: voiceExpenseTracker,
+    hasRoundedImage: true,
   },
   {
     id: 5,
@@ -55,16 +59,16 @@ const projects: Project[] = [
   },
 ];
 
-const DoodleArrow = ({ flip = false }: { flip?: boolean }) => (
+const CurlyArrow = ({ flip = false }: { flip?: boolean }) => (
   <div className="arrow-container" style={{ transform: flip ? 'scaleX(-1)' : 'none' }}>
-    <svg className="doodle-arrow" viewBox="0 0 200 60" preserveAspectRatio="none">
-      <path d="M5,30 Q50,30 100,30 T180,30 M160,15 L180,30 L160,45" />
+    <svg className="doodle-arrow" viewBox="0 0 200 80" preserveAspectRatio="none">
+      <path d="M10,40 C30,20 50,60 80,35 S120,50 150,40 S170,30 180,40 M165,25 Q175,35 180,40 Q175,45 165,55" />
     </svg>
   </div>
 );
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="text-section">
+  <div className="project-card">
     <h2>{project.category}</h2>
     <h1>{project.title}</h1>
     <div className="divider" />
@@ -84,8 +88,12 @@ const ProjectCard = ({ project }: { project: Project }) => (
 );
 
 const ProjectImage = ({ project }: { project: Project }) => (
-  <div className="robot-section">
-    <img src={project.image} alt={project.title} className="robot-img" />
+  <div className="project-image">
+    <img 
+      src={project.image} 
+      alt={project.title} 
+      className={`robot-img ${project.hasRoundedImage ? 'rounded-image' : ''}`} 
+    />
   </div>
 );
 
@@ -93,26 +101,26 @@ const FeaturedProjects = () => {
   return (
     <section className="featured-projects-section">
       <div className="featured-projects-header">
-        <h2 className="section-title">Featured Projects</h2>
-        <p className="section-subtitle">Innovations crafted by our talented teams</p>
+        <h2 className="section-title">Team Details</h2>
+        <p className="section-subtitle">Meet the brilliant minds behind our innovations</p>
       </div>
       
-      <div className="projects-list">
+      <div className="projectmemberdetails">
         {projects.map((project, index) => {
           const isEven = index % 2 === 0;
           
           return (
-            <div key={project.id} className="project-row">
+            <div key={project.id} className="project-item">
               {isEven ? (
                 <>
                   <ProjectImage project={project} />
-                  <DoodleArrow />
+                  <CurlyArrow />
                   <ProjectCard project={project} />
                 </>
               ) : (
                 <>
                   <ProjectCard project={project} />
-                  <DoodleArrow flip />
+                  <CurlyArrow flip />
                   <ProjectImage project={project} />
                 </>
               )}
