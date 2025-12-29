@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import GradientBlob from "@/components/GradientBlob";
 import ProductSlider from "@/components/ProductSlider";
+import FeaturedProjects from "@/components/FeaturedProjects";
+import "@/styles/featured-projects.css";
 
 const Index = () => {
   return (
@@ -19,6 +21,7 @@ const Index = () => {
         {/* Main Content */}
         <main className="relative z-10">
           <ProductSlider />
+          <FeaturedProjects />
         </main>
       </div>
     </>
