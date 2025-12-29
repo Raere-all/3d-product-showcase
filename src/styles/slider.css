@@ -106,7 +106,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   overflow: visible;
-  padding-right: 10px;
+  padding-right: 25px;
 }
 
 .carousel .list .item .introduce .des {
@@ -311,11 +311,12 @@
 
 .carousel.showDetail .list .item:nth-child(2) .detail .title {
   font-family: 'Orbitron', sans-serif;
-  font-size: 4em;
+  font-size: 3.2em;
   background: linear-gradient(135deg, hsl(var(--neon-teal)), hsl(var(--plasma-blue)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.1;
 }
 
 .carousel.showDetail .list .item:nth-child(2) .detail .des {
